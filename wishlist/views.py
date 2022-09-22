@@ -22,7 +22,7 @@ def show_wishlist(request):
     context = {
         'list_barang': data_barang_wishlist,
         'nama': 'Kak Cinoy',
-        'last_login': request.COOKIES['last_login']
+        'last_login': request.COOKIES['last_login'],
     }
     return render(request, 'wishlist/wishlist.html', context)
 
@@ -62,7 +62,7 @@ def login_user(request):
             login(request, user)
             response = HttpResponseRedirect(reverse('wishlist:show_wishlist'))
             response.set_cookie('last_login', str(datetime.datetime.now()))
-            return redirect('wishlist:show_wishlist')
+            return response
         else:
             messages.info(request, 'Username atau Password salah!')
     context = {}
@@ -72,4 +72,4 @@ def logout_user(request):
     logout(request)
     response = HttpResponseRedirect(reverse('wishlist:login'))
     response.delete_cookie('last_login')
-    return redirect('wishlist:login')
+    return response
