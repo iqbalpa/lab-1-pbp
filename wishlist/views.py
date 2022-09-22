@@ -57,5 +57,4 @@ def login_user(request):
         else:
             messages.info(request, 'Username atau Password salah!')
     context = {}
-    return render(request, 'login.html', context)
-    
+    return render(request, 'wishlist/login.html', context)
