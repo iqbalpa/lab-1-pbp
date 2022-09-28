@@ -5,23 +5,23 @@
 {% endblock meta %}
 
 {% block content %}
-<div class="login">
+<div class="login d-flex flex-column justify-content-center align-items-center">
 
-    <h1>Login</h1>
-    <form method="POST" action="">
+    <h1 class="m-3 fw-bold text-center">LOGIN</h1>
+    <form method="POST" action="" class="d-flex justify-content-center">
         {% csrf_token %}
         <table>
-            <tr>
-                <td>Username: </td>
+            <tr class="d-flex flex-column">
+                <td class="fw-bold">Username: </td>
                 <td><input type="text" name="username" placeholder="Username" class="form-control" /></td>
             </tr>
-            <tr>
-                <td>Password: </td>
+            <tr class="d-flex flex-column">
+                <td  class="fw-bold">Password: </td>
                 <td><input type="password" name="password" placeholder="Password" class="form-control" /></td>
             </tr>
-            <tr>
+            <tr class="d-flex flex-column align-items-center">
                 <td></td>
-                <td><input class="btn login_btn" type="submit" value="Login" /></td>
+                <td><input class="btn btn-outline-primary m-3 login_btn" type="submit" value="Login" /></td>
             </tr>
         </table>
     </form>
@@ -34,6 +34,6 @@
     </ul>
     {% endif %}
 
-    Belum mempunyai akun? <a href="{% url 'wishlist:register' %}">Buat Akun</a>
+    <p>Belum mempunyai akun? <a href="{% url 'wishlist:register' %}">Buat Akun</a></p>
 </div>
 {% endblock content %}

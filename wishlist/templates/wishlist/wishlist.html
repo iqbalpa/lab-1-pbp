@@ -1,27 +1,27 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h5>Nama: </h5>
-<p>{{nama}}</p>
+<div class="m-5 d-flex flex-column justify-content-center align-items-center">
+    <h5 class="fw-bold mb-3">Nama: <span class="fw-normal">{{nama}}</span></h5>
 
-<table>
-    <tr>
-    <th>Nama Barang</th>
-    <th>Harga Barang</th>
-    <th>Deskripsi</th>
-    </tr>
-    {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
-    {% for barang in list_barang %}
-        <tr>
-            <th>{{barang.nama_barang}}</th>
-            <th>{{barang.harga_barang}}</th>
-            <th>{{barang.deskripsi}}</th>
+    <table class="table">
+        <tr class="table-primary">
+            <th>Nama Barang</th>
+            <th>Harga Barang</th>
+            <th>Deskripsi</th>
         </tr>
-    {% endfor %}
-</table>
+        {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
+        {% for barang in list_barang %}
+            <tr>
+                <th class="fw-normal">{{barang.nama_barang}}</th>
+                <th class="fw-normal">{{barang.harga_barang}}</th>
+                <th class="fw-normal">{{barang.deskripsi}}</th>
+            </tr>
+        {% endfor %}
+    </table>
 
-<h5>Sesi terakhir login: {{ last_login }}</h5>
-
-<button><a href="{% url 'wishlist:logout' %}">Logout</a></button>
+    <h5 class="fs-6 mt-5">Sesi terakhir login: {{ last_login }}</h5>
+    <button class="btn btn-outline-danger"><a class="text-decoration-none" href="{% url 'wishlist:logout' %}">Logout</a></button>
+</div>
 
 {% endblock content %}
