@@ -22,6 +22,18 @@
             }
             $('.content').html(content);
         });
+        $('.submit-button').click(function(){
+            const namaBarang = $('.nama-barang').val();
+            const hargaBarang = $('.harga-barang').val();
+            const deskripsi = $('.deskripsi').val();
+            $.post('/wishlist/ajax/submit/', {
+                nama_barang: namaBarang,
+                harga_barang: hargaBarang,
+                deskripsi: deskripsi
+            }, function(){
+                alert('post success');
+            })
+        })
     })
 </script>
 {% endblock meta %}
@@ -36,12 +48,32 @@
     </div>
 </div>
 
-<div class="m-5 d-flex flex-column justify-content-center align-items-center">
+<div class="mt-5 container mb-2 d-flex flex-column justify-content-center align-items-center">
     <h5 class="fw-bold mb-3">Nama: <span class="fw-normal">{{nama}}</span></h5>
 
     <table class="table table-bordered table-hover content"></table>
 
-    <h5 class="fs-6 mt-5">Sesi terakhir login: {{ last_login }}</h5>
+    <h5 class="fs-6 mt-2">Sesi terakhir login: {{ last_login }}</h5>
+</div>
+
+<div class="h-full flex flex-col justify-center items-center">
+    <form action="" method="POST" class="shadow-2xl p-3 bg-red-200 flex flex-col justify-center items-center rounded-xl">
+        {% csrf_token %}
+        <h1 class="mb-4 font-bold font-5xl">ADD NEW WISHLIST</h1>
+        <div class="flex flex-col">
+            <label for="nama_barang" class="mb-2 font-semibold">Nama Barang</label>
+            <input type="text" name="nama_barang" id="nama_barang" placeholder="nama barang" class="nama-barang w-[25rem] border border-gray-400 p-2 rounded mb-4" required>
+        </div>
+        <div class="flex flex-col">
+            <label for="harga_barang" class="mb-2 font-semibold">Harga Barang</label>
+            <input type="text" name="harga_barang" id="harga_barang" placeholder="harga barang" class="harga-barang w-[25rem] border border-gray-400 p-2 rounded mb-4" required>
+        </div>
+        <div class="flex flex-col">
+            <label for="deskripsi" class="mb-2 font-semibold">Deskripsi</label>
+            <textarea name="deskripsi" id="deskripsi" cols="50" rows="5" placeholder="deskripsi barang" class="deskripsi border border-gray-400 p-2 rounded mb-4" required></textarea>
+        </div>
+        <button type="submit" class="submit-button bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">Submit</button>
+    </form>
 </div>
 
 {% endblock content %}
