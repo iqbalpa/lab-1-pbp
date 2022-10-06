@@ -76,6 +76,27 @@
                 harga_barang: hargaBarang,
                 deskripsi: deskripsi,
                 csrfmiddlewaretoken: CSRFtoken,
+            }, function(){
+                $('.content').empty();
+                $.get('/wishlist/json/', function(data, status){
+                    let content = `
+                        <tr class="table-header">
+                            <th>Nama Barang</th>
+                            <th>Harga Barang</th>
+                            <th>Deskripsi</th>
+                        </tr>
+                    `;
+                    for (let i = 0; i < data.length; i++) {
+                        content += `
+                            <tr class="table-body">
+                                <td>${data[i].fields.nama_barang}</td>
+                                <td>${data[i].fields.harga_barang}</td>
+                                <td>${data[i].fields.deskripsi}</td>
+                            </tr>
+                        `;
+                    }
+                    $('.content').html(content);
+                });
             })
         })
     })
