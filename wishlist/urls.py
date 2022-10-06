@@ -16,5 +16,5 @@ urlpatterns = [
     path('login/', login_user, name='login'),
     path('logout/', logout_user, name='logout'),
     path('ajax/', show_wishlist_ajax, name='show_wishlist_ajax'),
-    path('ajax/submit', submit_ajax, name='submit_ajax'),
+    path('ajax/submit/', submit_ajax, name='submit_ajax'),
 ]
